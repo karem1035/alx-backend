@@ -70,21 +70,18 @@ class Server:
             return []
         return self.dataset()[start:end]
 
-
-def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
-    """
-    Retrieves a hypermedia representation of the dataset,
-    based on the page number and page size.
-
-    Args:
-        page (int): The current page number. Defaults to 1.
-        page_size (int): The number of items per page. Defaults to 10.
-
-    Returns:
-        List[List]: representing the hypermedia data on the specified page.
-    """
-
     def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """
+        Retrieves a hypermedia representation of the dataset,
+        based on the page number and page size.
+
+        Args:
+            page (int): The current page number. Defaults to 1.
+            page_size (int): The number of items per page. Defaults to 10.
+
+        Returns:
+            List[List]: representing the hypermedia data on the specified page.
+        """
         assert isinstance(page, int) and page > 0, "Page must be and int > 0"
         assert isinstance(
             page_size, int) and page_size > 0, "page_size must be and int > 0"
@@ -95,7 +92,7 @@ def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
         dict['page_size'] = len(data)
         dict['page'] = start
         dict['data'] = data
-        dict['next_page'] = end if end else None
+        dict['next_page'] = end + 1 if end + 1 < len(self.dataset()) else None
         dict['prev_page'] = start - 1 if start - 1 else None
-        dict['total_page'] = len(self.dataset()) / page_size
+        dict['total_page'] = int(len(self.dataset()) / page_size)
         return dict
