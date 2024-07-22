@@ -94,5 +94,5 @@ class Server:
         dict['data'] = data
         dict['next_page'] = end + 1 if end + 1 < len(self.dataset()) else None
         dict['prev_page'] = start - 1 if start - 1 else None
-        dict['total_page'] = int(len(self.dataset()) / page_size)
+        dict['total_page'] = math.ceil(len(self.__dataset()) / page_size)
         return dict
