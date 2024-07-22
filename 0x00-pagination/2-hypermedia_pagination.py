@@ -75,16 +75,11 @@ class Server:
         Get paginated data with additional pagination information.
 
         Args:
-            page (int, optional): The current page number. Defaults to 1.
-            page_size (int, optional): The number of items per page. Defaults to 10.
+            page : The current page number. Defaults to 1.
+            page_size : The number of items per page. Defaults to 10.
 
         Returns:
             Dict[str, int]: A dictionary containing pagination details:
-                - 'page_size': Number of items on the current page.
-                - 'page': List of items on the current page.
-                - 'next_page': The next page number, or None if this is the last page.
-                - 'prev_page': The previous page number, or None if this is the first page.
-                - 'total_page': The total number of pages.
         """
         assert isinstance(page, int) and isinstance(page_size, int)
         assert page > 0 and page_size > 0
