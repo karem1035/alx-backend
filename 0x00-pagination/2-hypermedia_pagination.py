@@ -81,18 +81,15 @@ class Server:
         Returns:
             Dict[str, int]: A dictionary containing pagination details:
         """
-        assert isinstance(page, int) and isinstance(page_size, int)
-        assert page > 0 and page_size > 0
-
-        start, end = index_range(page, page_size)
         data = self.get_page(page, page_size)
-        all_data = self.dataset()
+        start, end = index_range(page, page_size)
+        total_page = math.ceil(len(self.__dataset) / page_size)
 
         return {
             'page_size': len(data),
             'page': page,
             'data': data,
-            'next_page': page + 1 if end < len(all_data) else None,
+            'next_page': page + 1 if end < len(self.__dataset) else None,
             'prev_page': page - 1 if start > 0 else None,
-            'total_page': math.ceil(len(all_data) / page_size)
+            'total_page': total_page
         }
