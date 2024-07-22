@@ -2,7 +2,7 @@
 """Module to calculate the range of indices for a given page and page size."""
 
 
-from typing import List
+from typing import List, Dict
 import math
 import csv
 
@@ -70,7 +70,7 @@ class Server:
             return []
         return self.dataset()[start:end]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """
         Get paginated data with additional pagination information.
 
