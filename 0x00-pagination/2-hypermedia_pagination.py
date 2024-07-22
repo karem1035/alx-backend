@@ -93,5 +93,5 @@ class Server:
             'page': data,
             'next_page': page + 1 if end < len(all_data) else None,
             'prev_page': page - 1 if start > 0 else None,
-            'total_page': math.ceil(len(all_data) / page_size)
+            'total_page': math.ceil(len(self.__dataset) / page_size)
         }
