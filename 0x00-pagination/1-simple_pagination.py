@@ -64,4 +64,7 @@ class Server:
             page_size, int) and page_size > 0, "\
                 page_size must be an integer greater than 0"
         start, end = index_range(page, page_size)
+
+        if start > len(self.dataset()):
+            return []
         return self.dataset()[start:end]
