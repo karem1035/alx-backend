@@ -48,14 +48,15 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
-        A method that retrieves a specified page from the dataset based on the page number and page size.
+        retrieves a page from the dataset,
+        based on the page number and page size.
 
         Args:
             page (int): The current page number. Defaults to 1.
             page_size (int): The number of items per page. Defaults to 10.
 
         Returns:
-            List[List]: A list of lists representing the data on the specified page.
+            List[List]: representing the data on the specified page.
         """
 
         assert isinstance(page, int) and page > 0, "\
