@@ -88,11 +88,11 @@ class Server:
 
         data = self.get_page(page, page_size)
         start, end = index_range(page, page_size)
-        dict = {}
-        dict['page_size'] = len(data)
-        dict['page'] = start
-        dict['data'] = data
-        dict['next_page'] = end + 1 if end + 1 < len(self.dataset()) else None
-        dict['prev_page'] = start - 1 if start - 1 else None
-        dict['total_page'] = math.ceil(len(self.__dataset()) / page_size)
-        return dict
+        return {
+            "page_size": page_size,
+            "page": page,
+            "data": data,
+            "next_page": page + 1 if end + 1 < len(self.__dataset) else None,
+            "prev_page": page - 1 if start > 0 else None,
+            "total_pages": math.ceil(len(self.__dataset) / page_size)
+        }
