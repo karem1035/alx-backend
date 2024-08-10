@@ -13,7 +13,6 @@ class BasicCache(BaseCaching):
     def __init__(self):
         """init method"""
         super().__init__()
-        self.cache_data = {}
 
     def put(self, key, item):
         """ puts new key and value on the cache system """
