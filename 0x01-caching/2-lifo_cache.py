@@ -35,3 +35,7 @@ class LIFOCache(BaseCaching):
 
         self.cache_data[key] = item
         self.order.append(key)
+
+    def get(self, key):
+        """Retrieve a value from the cache"""
+        return self.cache_data.get(key)
