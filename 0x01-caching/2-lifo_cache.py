@@ -21,18 +21,16 @@ class LIFOCache(BaseCaching):
             return
 
         # Update the item value if key already exists
-        if self.cache_data.get(key):
-            self.cache_data[key] = item
-            self.order.pop()
-            self.order.append(key)
-            return
+        if key in self.cache_data:
+            self.order.remove(key)
 
-        # LIFE Startedy
-        if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+        # LIFO eviction if cache limit is reached
+        elif len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             del_item = self.order.pop()
             del self.cache_data[del_item]
             print(f"DISCARD: {del_item}")
 
+        # Insert the new key-value pair
         self.cache_data[key] = item
         self.order.append(key)
 
